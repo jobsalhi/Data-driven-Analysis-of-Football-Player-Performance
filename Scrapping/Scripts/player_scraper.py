@@ -306,7 +306,17 @@ class PlayerScraper:
                         data.play_styles = playStyles.join(', ');
                     }
                 }
-                
+                if (!data.country_name) {
+                    const jsonLd = document.querySelector('script[type="application/ld+json"]');
+                    if (jsonLd) {
+                        try {
+                            const schema = JSON.parse(jsonLd.textContent);
+                            if (schema.nationality) {
+                                data.country_name = schema.nationality;
+                            }
+                        } catch (e) {}
+                    }   
+                }
                 return data;
             }
         """)

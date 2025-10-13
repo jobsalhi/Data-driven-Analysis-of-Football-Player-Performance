@@ -163,7 +163,7 @@ class SoFIFAScraper:
     
     def save_player_to_csv(self, stats):
         """Save a single player's stats to CSV file incrementally"""
-        import os
+
         
         # Check if file exists
         file_exists = os.path.isfile(self.output_file) and self.csv_initialized
